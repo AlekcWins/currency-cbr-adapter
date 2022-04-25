@@ -1,0 +1,56 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id "org.flywaydb.flyway" version "8.5.7"
+    id 'com.github.bjornvester.wsdl2java' version '1.2'
+
+}
+
+group = 'ru.ds.education'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+
+sourceSets.main.java.srcDirs += ["${buildDir.absolutePath}/generated/sources/wsdl2java/java"]
+
+wsdl2java {
+    packageName.set("ru.ds.education.currencycbradapter.generated")
+    wsdlDir = layout.projectDirectory.dir("src/main/resources")
+    markGenerated.set("yes-jdk8")
+}
+
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'ma.glasnost.orika:orika-core:1.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-activemq:2.6.6'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.6'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.2'
+    implementation('org.springframework.boot:spring-boot-starter-validation:2.6.6')
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.6.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.6'
+    testImplementation 'org.apache.activemq:activemq-broker:5.17.0'
+
+
+    implementation "javax.xml.ws:jaxws-api:2.3.1"
+    implementation 'com.sun.xml.ws:jaxws-ri:2.3.2'
+    implementation 'org.springframework.ws:spring-ws-core:3.1.2'
+
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
