@@ -1,24 +1,17 @@
 package ru.ds.education.currencycbradapter.config;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.activemq.command.ActiveMQTextMessage;
+import org.apache.activemq.command.ActiveMQQueue;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
-import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
-import org.springframework.jms.support.converter.MessageConversionException;
-import org.springframework.jms.support.converter.MessageConverter;
-import ru.ds.education.currencycbradapter.dto.CursDataRequest;
-import ru.ds.education.currencycbradapter.dto.CursDataResponse;
+import ru.ds.education.currencycbradapter.config.properties.JMCConfigProperties;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
-import javax.jms.TextMessage;
+import javax.jms.*;
 import java.text.SimpleDateFormat;
 
 @Configuration
@@ -27,13 +20,11 @@ import java.text.SimpleDateFormat;
 public class JMSConfig {
 
 
-    @Bean
-    public DefaultJmsListenerContainerFactory containerFactory() {
-        DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        factory.setSessionTransacted(true);
-        factory.setMaxMessagesPerTask(1);
-        factory.setConcurrency("1-5");
-        return factory;
+    private final JMCConfigProperties jmcConfigProperties;
+
+    @Autowired
+    public JMSConfig(JMCConfigProperties jmcConfigProperties) {
+        this.jmcConfigProperties = jmcConfigProperties;
     }
 
     @Bean
@@ -45,36 +36,8 @@ public class JMSConfig {
     }
 
     @Bean
-    public MessageConverter messageConverter(ObjectMapper mapper) {
-        return new MessageConverter() {
-            @Override
-            public Message toMessage(Object object, Session session) throws JMSException, MessageConversionException {
-                TextMessage message = new ActiveMQTextMessage();
-                String json = null;
-                try {
-                    if (object instanceof CursDataResponse) {
-
-                        json = mapper.writeValueAsString((CursDataResponse) object);
-                    }
-                } catch (JsonProcessingException ignored) {
-                    log.error(ignored.getMessage());
-                }
-                message.setText(json);
-                return message;
-            }
-
-            @Override
-            public Object fromMessage(Message message) throws JMSException, MessageConversionException {
-                CursDataRequest request = null;
-                try {
-                    request = mapper.readValue(((TextMessage) message).getText(), CursDataRequest.class);
-                } catch (JsonProcessingException ignored) {
-                    log.error(ignored.getMessage());
-                }
-                return request;
-            }
-        };
+    public Queue responseQueue() {
+        return new ActiveMQQueue(jmcConfigProperties.getResponseQueue());
     }
-
 
 }
