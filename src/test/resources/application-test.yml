@@ -1,0 +1,11 @@
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+jms:
+  request-queue: dev.cbr.request
+  response-queue: dev.cbr.response
+web-service:
+  endpoint: http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx
+

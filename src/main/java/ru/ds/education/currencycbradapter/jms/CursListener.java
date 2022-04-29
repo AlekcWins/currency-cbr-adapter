@@ -4,9 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.jms.support.JmsHeaders;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 import ru.ds.education.currencycbradapter.dto.CursDataRequest;
 import ru.ds.education.currencycbradapter.service.CbrWebService;
@@ -23,7 +22,8 @@ public class CursListener {
 
 
     @Autowired
-    public CursListener(CbrWebService webService, CursSender sender, ObjectMapper mapper) {
+    public CursListener(CbrWebService webService, CursSender sender,
+                        @Qualifier("objectMapperWithLocalDate") ObjectMapper mapper) {
         this.webService = webService;
         this.sender = sender;
         this.mapper = mapper;
@@ -36,7 +36,7 @@ public class CursListener {
             log.info("Parsed: {}", request);
             sender.send(webService.fetchCursesData(request), message.getJMSCorrelationID());
         } catch (JsonProcessingException e) {
-            log.error("Unparsable message received");
+            log.error("Unparsable message received " + message.getText());
         }
     }
 }

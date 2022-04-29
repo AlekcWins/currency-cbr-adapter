@@ -6,12 +6,13 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import ru.ds.education.currencycbradapter.config.properties.JMCConfigProperties;
 
-import javax.jms.*;
+import javax.jms.Queue;
 import java.text.SimpleDateFormat;
 
 @Configuration
@@ -28,6 +29,7 @@ public class JMSConfig {
     }
 
     @Bean
+    @Qualifier("objectMapperWithLocalDate")
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());

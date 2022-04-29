@@ -3,7 +3,6 @@ package ru.ds.education.currencycbradapter.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 @AllArgsConstructor
@@ -11,10 +10,13 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-public class CursDto implements Serializable {
-    @JsonProperty("currency")
+public class CursTestDataDto {
+
+    @JsonProperty("CharCode")
     private String currency;
 
-    @JsonProperty("curs")
+    @JsonProperty("Value")
     private BigDecimal curs;
 }
+
+

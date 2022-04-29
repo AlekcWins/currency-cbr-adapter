@@ -5,13 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessagePostProcessor;
 import org.springframework.stereotype.Service;
-import ru.ds.education.currencycbradapter.config.properties.JMCConfigProperties;
 import ru.ds.education.currencycbradapter.dto.CursDataResponse;
 
-import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.jms.TextMessage;
 
@@ -25,7 +23,9 @@ public class CursSender {
 
 
     @Autowired
-    public CursSender(JmsTemplate jmsTemplate, ObjectMapper mapper, Queue responseQueue) {
+    public CursSender(JmsTemplate jmsTemplate,
+                      @Qualifier("objectMapperWithLocalDate") ObjectMapper mapper,
+                      Queue responseQueue) {
         this.jmsTemplate = jmsTemplate;
         this.mapper = mapper;
         this.responseQueue = responseQueue;

@@ -37,16 +37,19 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.6.6'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.2'
     implementation('org.springframework.boot:spring-boot-starter-validation:2.6.6')
+    implementation 'org.projectlombok:lombok:1.18.22'
     compileOnly 'org.projectlombok:lombok:1.18.22'
     developmentOnly 'org.springframework.boot:spring-boot-devtools:2.6.6'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor  "org.projectlombok:lombok:1.18.22"
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.6'
     testImplementation 'org.apache.activemq:activemq-broker:5.17.0'
-
+    testImplementation 'org.testcontainers:postgresql:1.17.1'
 
     implementation "javax.xml.ws:jaxws-api:2.3.1"
     implementation 'com.sun.xml.ws:jaxws-ri:2.3.2'
     implementation 'org.springframework.ws:spring-ws-core:3.1.2'
+
 
 }
 
