@@ -1,6 +1,6 @@
 package ru.ds.education.currencycbradapter.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.ds.education.currencycbradapter.config.properties.WSDLConfigProperties;
@@ -9,14 +9,10 @@ import ru.ds.education.currencycbradapter.generated.DailyInfo;
 import javax.xml.ws.BindingProvider;
 
 @Configuration
+@RequiredArgsConstructor
 public class WSDLConfig {
 
     private final WSDLConfigProperties wsdlConfigProperties;
-
-    @Autowired
-    public WSDLConfig(WSDLConfigProperties wsdlConfigProperties) {
-        this.wsdlConfigProperties = wsdlConfigProperties;
-    }
 
     @Bean
     public DailyInfo dailyInfoService() {
