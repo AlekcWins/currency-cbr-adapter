@@ -2,6 +2,7 @@ package ru.ds.education.currencycbradapter.jms;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,19 +16,11 @@ import javax.jms.TextMessage;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class CursListener {
     private final CbrWebService webService;
     private final CursSender sender;
     private final ObjectMapper mapper;
-
-
-    @Autowired
-    public CursListener(CbrWebService webService, CursSender sender,
-                        @Qualifier("objectMapperWithLocalDate") ObjectMapper mapper) {
-        this.webService = webService;
-        this.sender = sender;
-        this.mapper = mapper;
-    }
 
     @JmsListener(destination = "#{@JMCConfigProperties.requestQueue}")
     public void listen(final TextMessage message) throws JMSException {

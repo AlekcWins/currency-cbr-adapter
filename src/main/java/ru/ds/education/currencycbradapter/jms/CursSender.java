@@ -2,6 +2,7 @@ package ru.ds.education.currencycbradapter.jms;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +16,13 @@ import javax.jms.TextMessage;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class CursSender {
 
     private final JmsTemplate jmsTemplate;
     private final ObjectMapper mapper;
     private final Queue responseQueue;
 
-
-    @Autowired
-    public CursSender(JmsTemplate jmsTemplate,
-                      @Qualifier("objectMapperWithLocalDate") ObjectMapper mapper,
-                      Queue responseQueue) {
-        this.jmsTemplate = jmsTemplate;
-        this.mapper = mapper;
-        this.responseQueue = responseQueue;
-    }
 
     public void send(final CursDataResponse response, final String correlationId) {
         jmsTemplate.send(responseQueue, s -> {
