@@ -42,7 +42,9 @@ class CbrWebServiceTest {
         CursDataRequest request = new CursDataRequest(onDate);
         CursDataResponse cursDataResponse = webService.fetchCursesData(request);
 
-        Assert.assertEquals(cursDataResponse, expectedResponse);
+        Assert.assertEquals(cursDataResponse.getOnDate(), expectedResponse.getOnDate());
+        Assert.assertEquals(cursDataResponse.getRates().size(), expectedResponse.getRates().size());
+        Assert.assertEquals(expectedResponse, cursDataResponse);
     }
 }
 

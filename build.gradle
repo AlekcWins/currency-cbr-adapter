@@ -15,6 +15,7 @@ sourceCompatibility = '11'
 sourceSets.main.java.srcDirs += ["${buildDir.absolutePath}/generated/sources/wsdl2java/java"]
 
 wsdl2java {
+    bindingFile.set(layout.projectDirectory.file("src/main/resources/bindings/bindings.xjb"))
     packageName.set("ru.ds.education.currencycbradapter.generated")
     wsdlDir = layout.projectDirectory.dir("src/main/resources")
     markGenerated.set("yes-jdk8")

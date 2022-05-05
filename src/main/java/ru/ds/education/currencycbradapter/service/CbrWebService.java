@@ -14,7 +14,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static ru.ds.education.currencycbradapter.util.GetCursOnDateXMLResultParser.parse;
-import static ru.ds.education.currencycbradapter.util.GregorianCalendarUtil.getXMLGregorianCalendar;
 
 @Service
 public class CbrWebService {
@@ -30,7 +29,7 @@ public class CbrWebService {
         DailyInfoSoap port = service.getDailyInfoSoap();
         LocalDate onDate = request.getOnDate();
         GetCursOnDateXMLResponse.GetCursOnDateXMLResult result =
-                port.getCursOnDateXML(getXMLGregorianCalendar(onDate));
+                port.getCursOnDateXML(onDate);
         List<CursDto> rates = parse((Element) result.getContent().get(0));
         return new CursDataResponse(onDate, rates);
     }
