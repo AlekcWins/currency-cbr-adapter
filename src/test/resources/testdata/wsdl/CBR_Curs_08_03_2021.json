@@ -1,0 +1,138 @@
+[
+  {
+    "CharCode": "AUD",
+    "Value": "57.1826"
+  },
+  {
+    "CharCode": "AZN",
+    "Value": "43.8067"
+  },
+  {
+    "CharCode": "GBP",
+    "Value": "103.1342"
+  },
+  {
+    "CharCode": "AMD",
+    "Value": "14.1807"
+  },
+  {
+    "CharCode": "BYN",
+    "Value": "28.5185"
+  },
+  {
+    "CharCode": "BGN",
+    "Value": "45.3909"
+  },
+  {
+    "CharCode": "BRL",
+    "Value": "13.1272"
+  },
+  {
+    "CharCode": "HUF",
+    "Value": "24.2617"
+  },
+  {
+    "CharCode": "HKD",
+    "Value": "95.8920"
+  },
+  {
+    "CharCode": "DKK",
+    "Value": "11.9384"
+  },
+  {
+    "CharCode": "USD",
+    "Value": "74.4275"
+  },
+  {
+    "CharCode": "EUR",
+    "Value": "88.9334"
+  },
+  {
+    "CharCode": "INR",
+    "Value": "10.2078"
+  },
+  {
+    "CharCode": "KZT",
+    "Value": "17.7065"
+  },
+  {
+    "CharCode": "CAD",
+    "Value": "58.6690"
+  },
+  {
+    "CharCode": "KGS",
+    "Value": "87.7401"
+  },
+  {
+    "CharCode": "CNY",
+    "Value": "11.4909"
+  },
+  {
+    "CharCode": "MDL",
+    "Value": "42.2884"
+  },
+  {
+    "CharCode": "NOK",
+    "Value": "86.4120"
+  },
+  {
+    "CharCode": "PLN",
+    "Value": "19.4003"
+  },
+  {
+    "CharCode": "RON",
+    "Value": "18.1854"
+  },
+  {
+    "CharCode": "XDR",
+    "Value": "106.8623"
+  },
+  {
+    "CharCode": "SGD",
+    "Value": "55.5553"
+  },
+  {
+    "CharCode": "TJS",
+    "Value": "65.3159"
+  },
+  {
+    "CharCode": "TRY",
+    "Value": "98.7692"
+  },
+  {
+    "CharCode": "TMT",
+    "Value": "21.2954"
+  },
+  {
+    "CharCode": "UZS",
+    "Value": "71.0331"
+  },
+  {
+    "CharCode": "UAH",
+    "Value": "26.8732"
+  },
+  {
+    "CharCode": "CZK",
+    "Value": "33.7609"
+  },
+  {
+    "CharCode": "SEK",
+    "Value": "87.2190"
+  },
+  {
+    "CharCode": "CHF",
+    "Value": "79.9436"
+  },
+  {
+    "CharCode": "ZAR",
+    "Value": "48.6400"
+  },
+  {
+    "CharCode": "KRW",
+    "Value": "65.9386"
+  },
+  {
+    "CharCode": "JPY",
+    "Value": "68.6822"
+  }
+]
