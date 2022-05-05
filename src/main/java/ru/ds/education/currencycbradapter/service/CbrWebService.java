@@ -1,6 +1,6 @@
 package ru.ds.education.currencycbradapter.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Element;
 import ru.ds.education.currencycbradapter.dto.CursDataRequest;
@@ -16,14 +16,10 @@ import java.util.List;
 import static ru.ds.education.currencycbradapter.util.GetCursOnDateXMLResultParser.parse;
 
 @Service
+@AllArgsConstructor
 public class CbrWebService {
 
     private final DailyInfo service;
-
-    @Autowired
-    public CbrWebService(DailyInfo dailyInfoService) {
-        this.service = dailyInfoService;
-    }
 
     public CursDataResponse fetchCursesData(CursDataRequest request) {
         DailyInfoSoap port = service.getDailyInfoSoap();
