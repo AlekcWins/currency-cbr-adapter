@@ -1,8 +1,8 @@
 spring:
   activemq:
-    broker-url: tcp://localhost:61617
-    user: admin
-    password: admin
+    broker-url: tcp://${ACTIVE_MQ_HOST}:${ACTIVE_MQ_PORT}
+    user: ${ACTIVE_MQ_USER}
+    password: ${ACTIVE_MQ_PASSWORD}
 jms:
   request-queue: dev.cbr.request
   response-queue: dev.cbr.response
